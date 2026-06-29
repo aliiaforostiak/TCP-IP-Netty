@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package gateway;
+
+option java_package = "com.example.gateway.proto";
+option java_outer_classname = "GatewayProto";
+
+message Ping {
+  string text = 1;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message Request {
+  string request_id = 1;
+
+  oneof payload {
+    Ping ping = 2;
+    LoginRequest login = 3;
+  }
+}
+
+message Response {
+  string request_id = 1;
+  bool success = 2;
+  string message = 3;
+  string session_id = 4;
+}
